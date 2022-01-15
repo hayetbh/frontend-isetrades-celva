@@ -12,7 +12,6 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-
 //main-components
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
@@ -45,6 +44,9 @@ import { CalendrierComponent } from './teams/club/platform_club/calendrier/calen
 import { ScheduleComponent } from './teams/club/general/schedule/schedule.component';
 import { DetailsEventComponent } from './teams/club/platform_club/details-event/details-event.component';
 import { DetailEventAccueilComponent } from './teams/club/general/detail-event-accueil/detail-event-accueil.component';
+
+import {HttpClient} from '@angular/common/http';
+
 
 registerLocaleData(localeFr, 'fr');
 //administration-components

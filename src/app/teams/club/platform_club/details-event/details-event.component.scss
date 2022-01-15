@@ -2,7 +2,11 @@
     margin: 20px auto;
     background-color: white !important;
   }
-
+.card-header{
+  position: relative;
+  height: 40px !important;
+  padding: 0px !important;
+}
   .club_data_container{
     position: relative;
     height: auto;
@@ -87,6 +91,12 @@
       transition: 0.5s;
       font-weight: bold;
       border-radius: 7px;
+  }
+  .title{
+    font-size: 1.7rem !important;
+  }
+  .header3{
+    font-size: 1.1rem !important;
   }
   .btnContainer button:hover{
     background-color: #f3bc08;

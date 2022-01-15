@@ -42,7 +42,7 @@
     <i class="ti-calendar"></i>  Ajouter event
   </button>
 
-   <button class="btn btn-primary float-right" id="addEvent" (click)="addtache()">
+   <button class="btn btn-primary float-right" id="addtask" (click)="addtache()">
     <i class="ti-calendar"></i>  Ajouter tache
    </button>
 
@@ -54,12 +54,13 @@
       [viewDate]="viewDate"
       [locale]="locale"
       [events]="events"
+      id="event"
       (eventClicked)="eventClicked($event)"
     >
     </mwl-calendar-month-view>
   </div>
   <!--popup calendrier-->
-  <div *ngIf="popup"  class="cardEventData">
+  <div id="popup" *ngIf="popup"  class="cardEventData">
 
     <i class="fa fa-close closebtn" id="closepop" (click)=close()></i>
 
@@ -69,10 +70,11 @@
 
     <h3 *ngIf="popupData.id_calendrier" class="datededebut">Heure: {{popupData.temps}}</h3>
     <p *ngIf="popupData.id_calendrier" class="desc">{{popupData.description}}</p>
+    <div class="btnContainers">    <button *ngIf="popupData.id_event" class="btn btn-primary float-right btnstyle" id="gotodetails" (click)=gotodetails(popupData.id_event)> details</button>
 
-    <button *ngIf="popupData.id_event" class="btn btn-primary float-right" id="gotodetails" (click)=gotodetails(popupData.id_event)> details</button>
-
-    <button id="deleteCAL" (click)=deleteCAL(popupData.id_calendrier)  class="btn btn-warning"><i class="ti-trash"></i></button>
+    <button *ngIf="popupData.id_calendrier" id="deleteCAL{{popupData.title}}" (click)=deleteCAL(popupData.id_calendrier)  class="btn btn-warning btnstyle"><i class="ti-trash"></i></button>
+    <button *ngIf="popupData.id_event" id="deleteevent{{popupData.title}}" (click)=deleteEVENT(popupData.id_event)  class="btn btn-warning btnstyle"><i class="ti-trash"></i></button>
+  </div>
 
   </div>
     <!--add task to calendrier-->
@@ -114,12 +116,12 @@
             <div class="group-add-on">
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" name="statut" value="0" [(ngModel)]="statut" checked><i class="helper"></i> Gratuit
+                  <input type="radio" id="gratuit" name="statut" value="0" [(ngModel)]="statut" > Gratuit
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" name="statut" value ="1" [(ngModel)]="statut" ><i class="helper"></i> Payé
+                  <input type="radio" id="paye" name="statut" value ="1" [(ngModel)]="statut" > Payé
                 </label>
               </div>
             </div>

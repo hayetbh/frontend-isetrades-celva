@@ -15,7 +15,6 @@ import {
 } from 'date-fns';
 import { Observable } from 'rxjs';
 import swal from 'sweetalert';
-import { PopupComponent } from '../../../../popup/popup.component';
 import { EventService } from '../../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -157,8 +156,6 @@ heure_fin: any;
       if(data['error']!=true){
         this.addtask=false;
         window.location.reload();
-
-
          }else{
          swal("Erreur!", data['message'], "error");
       }
@@ -259,7 +256,7 @@ heure_fin: any;
       if(data['error']!=true){
         swal("Succès!", "votre event a été enregistré avec succès", "success");
 
-        //this.editProfile = !this.editProfile;
+        this.addevent= !this.addevent;
         this.getClubEvents();
         this.titre_event="";
         this.description="";

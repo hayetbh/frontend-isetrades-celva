@@ -16,7 +16,7 @@
                                                             <div class="form-group row">
                                                               <label class="col-sm-2 col-form-label">cin</label>
                                                               <div class="col-sm-10">
-                                                                  <input type="number" [(ngModel)]="cin" name="cin"
+                                                                  <input type="number" [(ngModel)]="cin" name="cin" id="cin"
                                                                   class="form-control form-control-round"
                                                                   placeholder="saisir votre CIN">
                                                               </div>
@@ -24,7 +24,7 @@
                                                                       <div class="form-group row">
                                                                       <label class="col-sm-2 col-form-label">email</label>
                                                                       <div class="col-sm-10">
-                                                                          <input type="email" [(ngModel)]="email" name="email"
+                                                                          <input type="email" [(ngModel)]="email" id="email"
                                                                           class="form-control form-control-round"
                                                                           placeholder="saisir votre email">
                                                                       </div>
@@ -32,7 +32,7 @@
                                                                   <div class="form-group row">
                                                                       <label class="col-sm-2 col-form-label">Equipe</label>
                                                                       <div class="col-sm-10">
-                                                                          <select name="equipe"  [(ngModel)]="equipe" (change)="fun($event)"   class="form-control form-control-round">
+                                                                          <select id="equipe"  [(ngModel)]="equipe" (change)="fun($event)"   class="form-control form-control-round">
                                                                               <option value="" >Choisir votre equipe</option>
                                                                               <option  *ngFor="let eq of equipes" value="{{eq.id_equipe}}" >{{eq.equipe}}</option>
 
@@ -44,14 +44,14 @@
                                                                           <div class="form-group row">
                                                                               <label class="col-sm-2 col-form-label">Pourquoi voulez-vous être membre de ce club?</label>
                                                                               <div class="col-sm-10">
-                                                                                  <textarea rows="5" cols="5" name="motivation" class="form-control " [(ngModel)]="motivation"
+                                                                                  <textarea rows="5" cols="5" id="motivation" class="form-control " [(ngModel)]="motivation"
                                                                                   placeholder="    Motivation"></textarea>
                                                                               </div>
                                                                           </div>
 
                                                                           <div class="full field">
                                                                             <div class="center">
-                                                                              <button class="btn btn-warning btn-round" (click)=sendRequest()>Envoyer</button>
+                                                                              <button class="btn btn-warning btn-round" id="envoyer" (click)=sendRequest()>Envoyer</button>
                                                                               </div>
                                                                          </div>
 

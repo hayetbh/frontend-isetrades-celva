@@ -1,7 +1,7 @@
    <!-- afficher events -->
-   <div class="col-md-12">
-    <app-card [title]="'Detail'" [cardClass]="'email-sent-card'" [classHeader]="true">
-        <button *ngIf="admin==true" id="changetoeditevent" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
+   <div class="col-md-12 allwrapper">
+    <app-card [title]="'Detail'"  [cardClass]="'email-sent-card'"  [classHeader]="true">
+        <button *ngIf="admin==true" id="changetoeditevent" type="button"  class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="toggleEditProfile()">
             <i class="icofont {{ editProfileIcon }}"></i>
           </button>
         <div  *ngIf="editProfile">
@@ -15,20 +15,20 @@
                 <div class="col-md-6 layout_padding_2">
 
                   <div class="club_data_container">
-                    <div class="header"><h1>{{ev.titre_event}}</h1></div>
+                    <div class="header " ><h1 class="title">{{ev.titre_event}}</h1></div>
                     <div class="header">
                         <span *ngIf="ev.statut == 0">Gratuit</span>
                         <span *ngIf="ev.statut == 1">Payé</span>
                     </div>
-                    <div class="domain"><h3 >Date: de {{ev.date_debut}} à {{ev.date_fin}}</h3></div>
-                    <div class="domain"><h3 >de {{ev.heure_debut}} à {{ev.heure_fin}}</h3></div>
+                    <div class="domain"><h3 class="header3">Date: de {{ev.date_debut}} à {{ev.date_fin}}</h3></div>
+                    <div class="domain"><h3 class="header3">de {{ev.heure_debut}} à {{ev.heure_fin}}</h3></div>
                     <div class="description"><p>{{ev.description}} </p></div>
 
                     <div  class="btninscri">
-                        <a class="hvr-radial-out button-theme btninscri" (click)="participer(ev.id_event)" > participer</a>
+                        <a class="hvr-radial-out button-theme btninscri" (click)="participer(ev.id_event)" id="participer" > participer</a>
                     </div>
                     <div *ngIf="admin==true"   class="btninscri">
-                        <a class="hvr-radial-out button-theme btninscri" (click)="gotolisteparticipates(ev.id_event,ev.titre_event)" >Liste de participes</a>
+                        <a class="hvr-radial-out button-theme btninscri" (click)="gotolisteparticipates(ev.id_event,ev.titre_event)"id="listeparticipation" >Liste de participes</a>
                     </div>
 
                   </div>
@@ -51,7 +51,7 @@
                                 <td>
                                   <div class="input-group">
                                     <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
-                                    <input type="text" class="form-control" id="event" placeholder={{ev.titre_event}} value="" [(ngModel)]="titre_event">
+                                    <input type="text" class="form-control" id="titre_event" placeholder={{ev.titre_event}} value="" [(ngModel)]="titre_event">
                                   </div>
                                 </td>
                               </tr>
@@ -62,12 +62,12 @@
                                     <div class="group-add-on" >
                                       <div class="radio radiofill radio-inline">
                                         <label>
-                                          <input type="radio" name="statut" value="0"  [(ngModel)]="statut" checked><i class="helper"></i> Gratuit
+                                          <input type="radio" name="gratuit" value="0"  [(ngModel)]="statut" checked><i class="helper"></i> Gratuit
                                         </label>
                                       </div>
                                       <div class="radio radiofill radio-inline">
                                         <label>
-                                          <input type="radio" name="statut" value ="1" [(ngModel)]="statut" ><i class="helper"></i> Payé
+                                          <input type="radio" name="paye" value ="1" [(ngModel)]="statut" ><i class="helper"></i> Payé
                                         </label>
                                       </div>
                                     </div>
@@ -78,20 +78,20 @@
 
                                 <td>
                                   <label class="text-primary">Date debut</label>
-                                  <input id="datedebut" class="form-control" type="date" value="" placeholder={{ev.date_debut}} [(ngModel)]="date_debut" />
+                                  <input id="date_debut" class="form-control" type="date" value="" placeholder={{ev.date_debut}} [(ngModel)]="date_debut" />
                                 </td>
                               </tr>
                               <tr>
                                 <td>
                                   <label class="text-primary">Date fin</label>
-                                  <input id="datefin" class="form-control" type="date" value="" placeholder={{ev.date_fin}} [(ngModel)]="date_fin" />
+                                  <input id="date_fin" class="form-control" type="date" value="" placeholder={{ev.date_fin}} [(ngModel)]="date_fin" />
                                 </td>
                               </tr>
                               <tr>
                                 <td>
                                   <div class="input-group">
                                     <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
-                                    <input id="description" type="text" class="form-control" placeholder={{ev.description}} value="" [(ngModel)]="description">
+                                    <input id="descriptionevent" type="text" class="form-control" placeholder={{ev.description}} value="" [(ngModel)]="description">
                                   </div>
                                 </td>
                               </tr>
@@ -111,7 +111,7 @@
                               <td>
                                 <div class="input-group">
                                   <span class="input-group-prepend"><label class="input-group-text"><i class="ti-link"></i></label></span>
-                                  <input id="url" type="text" class="form-control" value="" placeholder={{ev.url_event}} [(ngModel)]="url_event">
+                                  <input id="lien" type="text" class="form-control" value="" placeholder={{ev.url_event}} [(ngModel)]="url_event">
                                 </div>
                               </td>
                             </tr>
