@@ -151,7 +151,7 @@
                             <img
                               class="img-responsive"
                               src="http://127.0.0.1:5010/{{ post.url_image }}"
-                              alt="#"
+                              alt="image of post"
                             />
                           </div>
 
@@ -259,16 +259,19 @@
                                       <center>
                                         <div
                                           class="col-lg-10"
-                                          *ngIf="act.image_act != 'undefined'"
+                                          *ngIf="act.imageUrl != 'undefined'"
                                         >
+                                        <div
+                                        class="col-lg-10"
+                                        *ngFor="let a of act.imageUrl"
+                                      >
                                           <img
                                             class="img-responsive"
-                                            src="http://127.0.0.1:5010/{{
-                                              act.image_act
-                                            }}"
-                                            alt="#"
+                                            src="http://127.0.0.1:5010/{{a}}"
+                                            alt="image act"
                                           />
                                         </div>
+                                      </div>
                                       </center>
                                     </div>
                                   </div>

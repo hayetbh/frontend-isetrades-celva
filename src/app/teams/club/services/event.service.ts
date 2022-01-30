@@ -6,12 +6,12 @@ import { AnonymousSubject } from 'rxjs/internal/Subject';
   providedIn: 'root'
 })
 export class EventService {
-
+  api = "http://127.0.0.1:5010"
   constructor(private _http:HttpClient) { }
 
   getevents(){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/event/getevents",
+      this.api + "/event/getevents",
       {},
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
@@ -21,14 +21,14 @@ export class EventService {
   //	url_image	url_event	id_membre	id_club
   addevent(file:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/event/addevent",  file ,
+      this.api + "/event/addevent",  file ,
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
   ///evenment/getClubEvents
   getClubEvents(id_club:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/event/getClubEvents",
+      this.api + "/event/getClubEvents",
       {
         id_club:id_club
       },
@@ -39,7 +39,7 @@ export class EventService {
   // /calander/getcalender id_club
   getcalendrier(id_club:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/calendar/getcalendar",
+      this.api + "/calendar/getcalendar",
       {
         id_club:id_club
       },
@@ -49,7 +49,7 @@ export class EventService {
   // /calander/addcalender "id_club"temps"date"description"
   addTOcalendrier(id_club:any,titre:any,temps:any,date:any,description:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/calendar/addcalendar",
+      this.api + "/calendar/addcalendar",
       {
         id_club:id_club,
         temps:temps,
@@ -63,7 +63,7 @@ export class EventService {
   // 127.0.0.1:5010/evenment/deleteEvent
   deleteEvent(id_event:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/event/deleteEvent",
+      this.api + "/event/deleteEvent",
       {
         id_event:id_event
       },
@@ -73,7 +73,7 @@ export class EventService {
   //  127.0.0.1:5010/calander/deletecalender id_calendrier ou tooken
   deleteTask(id_calendrier:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/calendar/deletecalendar",
+      this.api + "/calendar/deletecalendar",
       {
         id_calendrier:id_calendrier
       },
@@ -83,7 +83,7 @@ export class EventService {
 
   participer(id_event:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/participation/addParticipation",
+      this.api + "/participation/addParticipation",
       {
         id_event:id_event
       },
@@ -93,7 +93,7 @@ export class EventService {
 
   getallparticipation(id_event:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/participation/getAllParticipation",
+      this.api + "/participation/getAllParticipation",
       {
         id_event:id_event
       },
@@ -102,7 +102,7 @@ export class EventService {
   }
   confirmer(id_participation:any,event_name:any,email:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/participation/updatestatut",
+      this.api + "/participation/updatestatut",
       {
         id_participation:id_participation,
         event_name:event_name,
@@ -113,26 +113,26 @@ export class EventService {
   }
   deleteparticipant(id_participation:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/participation/deleteParticipation",
+      this.api + "/participation/deleteParticipation",
       {
         id_participation:id_participation
       },
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
- 
+
   getOneUser(){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/participation/getOneUserParti",
+      this.api + "/participation/getOneUserParti",
       {},
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
 
   }
-  
+
   getOneEvent(id_event:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/event/getOneEvent",
+      this.api + "/event/getOneEvent",
       {
         id_event:id_event
       },
@@ -142,17 +142,17 @@ export class EventService {
   //updateEvent
   /*  updateEvent(file:any,id_event:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/event/updateEvent",
-      file , 
-        
-      
+      this.api + "/event/updateEvent",
+      file ,
+
+
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
   */
   updateEvent(id_event:any,titre_event:any,description:any, date_debut:any,date_fin:any,heure_debut:any,heure_fin:any,statut:any,url_event:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/event/updateEvent",
+      this.api + "/event/updateEvent",
       {
         id_event:id_event,
         titre_event: titre_event,

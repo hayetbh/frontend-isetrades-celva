@@ -5,11 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RequestService {
+  api = "http://127.0.0.1:5010"
   constructor(private _http:HttpClient) { }
 
 sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any,tel: any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/demande_event/sendRequest",
+      this.api + "/demande_event/sendRequest",
       {  cin: cin,
         equipe: equipe,
         club:club,
@@ -22,7 +23,7 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any,tel: any) {
 }
   getRequests(id_club:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/demande_event/getRequests",
+      this.api + "/demande_event/getRequests",
       {
         id_club : id_club
       },
@@ -32,7 +33,7 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any,tel: any) {
   }
   acceptRequests(idDemande:any,email:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/demande_event/acceptOrDeleteRequests",
+      this.api + "/demande_event/acceptOrDeleteRequests",
       {
         idDemande:idDemande,
         option:"accept",
@@ -43,7 +44,7 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any,tel: any) {
   }
   DeleteRequests(idDemande:any,email:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/demande_event/acceptOrDeleteRequests",
+      this.api + "/demande_event/acceptOrDeleteRequests",
       {
         idDemande:idDemande,
         option:"delete",
@@ -55,7 +56,7 @@ sendRequest(cin:any,equipe:any,club:any,motivation:any,email: any,tel: any) {
 
   getTeams() {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/roles_and_teams/getTeams",""
+      this.api + "/roles_and_teams/getTeams",""
     );
   }
 }

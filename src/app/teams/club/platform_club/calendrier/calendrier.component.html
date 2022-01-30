@@ -112,19 +112,14 @@
             <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
             <input type="file" class="form-control" value=""  id="image_event" placeholder="upload image de l'événement" (change)="image($event)">
           </div>
-          <div class="form-radio" id="statut" >
-            <div class="group-add-on">
-              <div class="radio radiofill radio-inline">
-                <label>
-                  <input type="radio" id="gratuit" name="statut" value="0" [(ngModel)]="statut" > Gratuit
-                </label>
-              </div>
-              <div class="radio radiofill radio-inline">
-                <label>
-                  <input type="radio" id="paye" name="statut" value ="1" [(ngModel)]="statut" > Payé
-                </label>
-              </div>
-            </div>
+
+          <div class="input-group">
+            <input type="radio" id="gratuit" name="statut" value="0" [(ngModel)]="statut" >
+            <label>Gratuit </label>
+          </div>
+            <div class="input-group">
+            <input type="radio" id="paye" name="statut" value ="1" [(ngModel)]="statut" >
+            <label> Payé </label>
           </div>
           <div class="input-group">
             <span class="input-group-prepend"><label class="input-group-text"><i class="ti-calendar"></i></label></span>
@@ -137,7 +132,7 @@
           <div class="input-group">
             <span class="input-group-prepend"><label class="input-group-text"><i class="icofont icofont-page"></i></label></span>
 
-            <input type="text" class="form-control" placeholder="Description" id="descriptionevent" value="" [(ngModel)]="description">
+            <input type="text" class="form-control" placeholder="Description" id="descriptionevent" value="" [(ngModel)]="description_event">
           </div>
           <label class="text-primary">Heure fin</label>
           <div class="input-group">

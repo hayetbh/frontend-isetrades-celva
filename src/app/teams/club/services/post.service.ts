@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PostService {
-
+  api = "http://127.0.0.1:5010"
   constructor(private _http:HttpClient) { }
 
   getposts(idclub:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/post/getposts",   {
+      this.api + "/post/getposts",   {
 
          idclub:idclub
       },
@@ -20,13 +20,13 @@ export class PostService {
   }
   addpost(file:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/post/addpost",    file ,
+      this.api + "/post/addpost",    file ,
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
   addComment(id_publication:any,description:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/post/addComment",   {
+      this.api + "/post/addComment",   {
 
 
         id_publication:id_publication,
@@ -37,7 +37,7 @@ export class PostService {
   }
   getComments(idpublication:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/post/getComments",   {
+      this.api + "/post/getComments",   {
 
          idpublication:idpublication
       },
@@ -47,7 +47,7 @@ export class PostService {
   // 127.0.0.1:5010/post/deletePost  id_publication ou token
   deletePost(id_publication:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/post/deletePost",   {
+      this.api + "/post/deletePost",   {
 
         id_publication:id_publication
       },
@@ -58,7 +58,7 @@ export class PostService {
  //  127.0.0.1:5010/post/deleteComment  id_commentaire ou token
  deleteComment(id_commentaire:any){
   return this._http.post<any>(
-    "http://127.0.0.1:5010" + "/post/deleteComment",   {
+    this.api + "/post/deleteComment",   {
 
       id_commentaire:id_commentaire,
     },

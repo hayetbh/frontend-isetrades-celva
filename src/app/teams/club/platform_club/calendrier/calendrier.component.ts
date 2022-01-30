@@ -34,7 +34,7 @@ export class CalendrierComponent implements OnInit {
   constructor(private _http:ClubService,public dialog: MatDialog,private http: HttpClient,private modal: NgbModal,private modalService: NgbModal,private e_http: EventService,private route: ActivatedRoute,private router: Router) {}
 //event
 titre_event: any;
-description:any;
+description_event:any;
 date_debut: any;
 date_fin: any;
 url_image: any;
@@ -106,7 +106,7 @@ heure_fin: any;
           start:new Date(e.date_debut),
           end:new Date(e.date_fin),
           title:e.titre_event,
-          description:e.description,
+          description:e.description_event,
           heuredebut:e.heure_debut,
           heurefin:e.heure_fin,
           id_event:e.id_event,
@@ -240,7 +240,7 @@ heure_fin: any;
   addevents(){
     const formData = new FormData();
       formData.append('titre_event', this.titre_event);
-      formData.append('description', this.description);
+      formData.append('description_event', this.description_event);
       formData.append('date_debut', this.date_debut);
       formData.append('date_fin', this.date_fin);
       formData.append('heure_debut', this.heure_debut);
@@ -259,7 +259,7 @@ heure_fin: any;
         this.addevent= !this.addevent;
         this.getClubEvents();
         this.titre_event="";
-        this.description="";
+        this.description_event="";
         this.date_debut="";
         this.date_fin="";
         this.heure_debut="";

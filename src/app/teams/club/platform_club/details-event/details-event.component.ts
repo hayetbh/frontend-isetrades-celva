@@ -12,12 +12,12 @@ export class DetailsEventComponent implements OnInit {
   idevent: any;
   event: any = [];
   admin: any;
-  editProfile = true;
-  editProfileIcon = 'icofont-edit';
+  editEvent = true;
+  editEventIcon = 'icofont-edit';
   idclub: any;
   //event
 titre_event: any;
-description:any;
+description_event:any;
 date_debut: any;
 date_fin: any;
 url_image: any;
@@ -35,9 +35,9 @@ heure_fin: any;
     this.getOneEvent();
     this.getadmin();
   }
-  toggleEditProfile() {
-    this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
-    this.editProfile = !this.editProfile;
+  toggleEditEvent() {
+    this.editEventIcon = (this.editEventIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
+    this.editEvent = !this.editEvent;
   }
   getadmin() {
     this._http.getadmin(this.idclub).subscribe(club => {
@@ -61,11 +61,11 @@ heure_fin: any;
       }
     );
   }
-  
+
   getOneEvent(){
     this.http.getOneEvent(this.idevent).subscribe(club => {
       this.event= club['data'];
-      
+
     },
     error => {
       console.log(error);
@@ -75,29 +75,29 @@ heure_fin: any;
 gotolisteparticipates(id_event:any, nomevent:any ){
   this.router.navigate(['dashboard_club/liste-participes/'+id_event]);
   nomevent = localStorage.setItem('nomevent',nomevent);
-  
+
 }
 /*
 gotoedit(id_event:any){
   this.router.navigate(['dashboard_club/edit/'+id_event]);
-  
+
 }*/
 updateEvent() {
 
-  this.http.updateEvent(this.idevent,this.titre_event,this.description,this.date_debut,this.date_fin,this.heure_debut,this.heure_fin,this.statut,this.url_image)
+  this.http.updateEvent(this.idevent,this.titre_event,this.description_event,this.date_debut,this.date_fin,this.heure_debut,this.heure_fin,this.statut,this.url_image)
   .subscribe(data => {
 
     if(data['error']!=true){
       swal("Succès!", "l'événement a été modifié avec succès", "success");
       this.getOneEvent();
-      this.editProfile = !this.editProfile;
+      this.editEvent = !this.editEvent;
 
        }else{
       swal("Erreur!", data['message'], "error");
     }
   },
     err => {
- 
+
    console.log(err);
     }
   );

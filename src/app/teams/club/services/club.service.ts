@@ -5,18 +5,18 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class ClubService {
-
+  api = "http://127.0.0.1:5010"
   constructor(private _http:HttpClient) { }
   getClubs() {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/club/getclubs", ""
+      this.api + "/club/getclubs", ""
 
     );
   }
 
   getClubUsers(idclub:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/user/getClubUsers",
+      this.api + "/user/getClubUsers",
       {
         idclub:idclub
       }
@@ -24,7 +24,7 @@ export class ClubService {
   }
   getMembres(idclub:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/user/getMembres",
+      this.api + "/user/getMembres",
       {
         idclub:idclub
       }
@@ -32,7 +32,7 @@ export class ClubService {
   }
   getResponsables(idclub:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/user/getResponsables",
+      this.api + "/user/getResponsables",
       {
         idclub:idclub
       }
@@ -40,7 +40,7 @@ export class ClubService {
   }
   getuserClubs() {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/club/getuserClubs", ""
+      this.api + "/club/getuserClubs", ""
       ,
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
@@ -49,14 +49,14 @@ export class ClubService {
 
   getClubYouAreAdminIn() {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/club/getClubYouAreAdminIn", ""
+      this.api + "/club/getClubYouAreAdminIn", ""
       ,
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
     );
   }
   getadmin(idclub:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/club//isAdmin", {
+      this.api + "/club//isAdmin", {
         id_club:idclub
       }
       ,

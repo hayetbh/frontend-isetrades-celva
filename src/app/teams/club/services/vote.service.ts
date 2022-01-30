@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class VoteService {
-
+  api = "http://127.0.0.1:5010"
   constructor(private _http:HttpClient) { }
 
   addsondage(titre:any, idclub:any){
     return this._http.post<any>(
-    "http://127.0.0.1:5010" + "/sondage/addsondage",   {
+    this.api + "/sondage/addsondage",   {
        titre:titre,
        idclub:idclub
     },
@@ -20,7 +20,7 @@ export class VoteService {
   }
   getsondage(idclub:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/sondage/getsondage",   {
+      this.api + "/sondage/getsondage",   {
 
          idclub:idclub
       },
@@ -29,7 +29,7 @@ export class VoteService {
   }
   addVote( statut:any,idsondage:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/sondage/addVote",   {
+      this.api + "/sondage/addVote",   {
         statut:statut,
          idsondage:idsondage
 
@@ -40,7 +40,7 @@ export class VoteService {
   }
   getVotes(idsondage:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/sondage/getVotes",   {
+      this.api + "/sondage/getVotes",   {
 
          idsondage:idsondage
       },
@@ -50,7 +50,7 @@ export class VoteService {
   }
   getVote(statut:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/sondage/getVote",   {
+      this.api + "/sondage/getVote",   {
 
          statut:statut
       },
@@ -61,7 +61,7 @@ export class VoteService {
   // 127.0.0.1:5010/sondage/deletesondage idsondage ou token
   deleteSondage(idsondage:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/sondage/deletesondage",   {
+      this.api + "/sondage/deletesondage",   {
 
         idsondage:idsondage
 

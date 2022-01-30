@@ -5,23 +5,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MembreService {
-
+  api = "http://127.0.0.1:5010"
   constructor(private _http:HttpClient) { }
 
   getRoles() {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/roles_and_teams/getroles",""
+      this.api + "/roles_and_teams/getroles",""
 
     );
   }
   getTeams() {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/roles_and_teams/getTeams",""
+      this.api + "/roles_and_teams/getTeams",""
     );
   }
   getUser(id_membre:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/user/getOneUser",
+      this.api + "/user/getOneUser",
       {
         id_membre:id_membre
       }
@@ -30,7 +30,7 @@ export class MembreService {
   // /updateUserInfo
   UpdateUser(email:any,motdepasse:any,tel:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/user/updateUserInfo",
+      this.api + "/user/updateUserInfo",
       {
 
         email:email,
@@ -44,7 +44,7 @@ export class MembreService {
   // /user/updateUserImage
   UpdatePic(file:any){
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/user/updateUserImage",
+      this.api + "/user/updateUserImage",
 
         file,
 

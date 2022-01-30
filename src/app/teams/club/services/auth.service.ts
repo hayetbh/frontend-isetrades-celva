@@ -4,11 +4,12 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class AuthService {
+  api = "http://127.0.0.1:5010"
   constructor(private _http:HttpClient) { }
 
   login(email: any,password:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/auth_event/singin",
+      this.api + "/auth_event/singin",
       { email: email,
         password:password
       }
@@ -21,7 +22,7 @@ export class AuthService {
 
   SendEmailForgetPassword(email: any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/forgetpassword/sendEmailForgetPassword",
+      this.api + "/forgetpassword/sendEmailForgetPassword",
       {
         email: email
       }
@@ -30,7 +31,7 @@ export class AuthService {
 
   restartPassword(password:any) {
     return this._http.post<any>(
-      "http://127.0.0.1:5010" + "/forgetpassword/restartPassword",
+      this.api + "/forgetpassword/restartPassword",
       {
         password:password
       }

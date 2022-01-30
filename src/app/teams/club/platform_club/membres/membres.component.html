@@ -18,7 +18,9 @@
                                   <thead>
                                       <tr>
                                           <th>Nom et prenom</th>
-                                          <th>Cin</th>
+                                          <th>Numero de telephone</th>
+                                          <th>Email</th>
+                                          <th>Role</th>
                                           <th>Equipe</th>
                                       </tr>
                                   </thead>
@@ -27,20 +29,27 @@
                                           <td>
                                               <div class="task-contain">
                                                   <h6 class=" d-inline-block text-center" >
-                                                    <img style="height: 50px; width: 50px;" *ngIf="membre.membreimage=='imageurl'" src="assets/images/5.png">
+                                                    <img style="height: 50px; width: 50px;" *ngIf="membre.membreimage=='imageurl'" src="C:\New folder\frontend-isetrades-celva\src\assets\images\5.png">
                                                     <img style="height: 50px; width: 50px;"  *ngIf="membre.membreimage!='imageurl'" src="http://127.0.0.1:5010/{{membre.membreimage}}">
                                                   </h6>
                                                   <p class="d-inline-block m-l-20">{{membre.nom}}</p>
                                               </div>
                                           </td>
                                           <td>
-                                              <p class="d-inline-block m-r-20" >{{membre.cin}}</p>
+                                              <p class="d-inline-block m-r-20" >{{membre.tel}}</p>
 
                                           </td>
-                                          <td>
-                                            <p class="d-inline-block m-r-20">{{membre.equipe}}</p>
 
+                                        <td>
+                                          <p class="d-inline-block m-r-20" >{{membre.email}}</p>
                                         </td>
+                                        <td>
+                                          <p class="d-inline-block m-r-20" >{{membre.role}}</p>
+                                        </td>
+                                        <td>
+                                          <p class="d-inline-block m-r-20">{{membre.equipe}}</p>
+
+                                      </td>
                                       </tr>
 
                                   </tbody>

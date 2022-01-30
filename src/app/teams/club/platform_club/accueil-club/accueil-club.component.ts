@@ -154,7 +154,6 @@ export class AccueilClubComponent implements OnInit {
   getcmtre(idpublication:any) {
     this.p_http.getComments(idpublication).subscribe(club => {
         this.cmtrs= club['data'];
-       // console.log(club);
       },
       error => {
         console.log(error);
@@ -167,8 +166,6 @@ export class AccueilClubComponent implements OnInit {
       if(data['error']!=true){
        this.cmtre='';
         window.location.reload();
-        //localStorage.setItem("cmtres",data["cmtres"])
-       // console.log(data["cmtres"])
          }else{
         alert(data['message'])
       }
@@ -217,7 +214,6 @@ export class AccueilClubComponent implements OnInit {
   getvotes(idsondage:any){
     this.v_http.getVotes(idsondage).subscribe(club => {
       this.votes= club['data'];
-     console.log(this.votes);
 
     },
     error => {
@@ -227,8 +223,6 @@ export class AccueilClubComponent implements OnInit {
   getvote(statut:any){
     this.v_http.getVote(statut).subscribe(club => {
       this.vote= club['data'];
-
-     console.log(club);
     },
     error => {
       console.log(error);
@@ -240,7 +234,8 @@ export class AccueilClubComponent implements OnInit {
 
       if(data['error']!=true){
        swal("Vous avez votè!", "votre vote a été enregistré avec succès", "success");
-
+       this.getvotes(idsondage)
+       window.location.reload();
       }else{
        swal("Erreur!", data['message'], "error");
 
@@ -377,8 +372,8 @@ getact(idclub:any){
   this.a_http.getclubactivites(idclub).subscribe(club => {
     this.activites= club['data'];
     this.activites = Object.entries(this.activites).map((e) => (e[1]));
-   
-   
+    console.log(this.activites);
+
   },
   error => {
     console.log(error);
