@@ -77,11 +77,9 @@ gotolisteparticipates(id_event:any, nomevent:any ){
   nomevent = localStorage.setItem('nomevent',nomevent);
 
 }
-/*
-gotoedit(id_event:any){
-  this.router.navigate(['dashboard_club/edit/'+id_event]);
-
-}*/
+image(e:any){
+  this.url_image=e.target.files[0];
+}
 updateEvent() {
 
   this.http.updateEvent(this.idevent,this.titre_event,this.description_event,this.date_debut,this.date_fin,this.heure_debut,this.heure_fin,this.statut,this.url_image)

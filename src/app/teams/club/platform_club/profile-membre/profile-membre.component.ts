@@ -4,7 +4,6 @@ import { MembreService } from '../../services/membre.service';
 import { Router } from '@angular/router';
 import { ClubService } from '../../services/club.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PopupComponent } from '../../../../popup/popup.component';
 import swal from 'sweetalert';
 @Component({
   selector: 'app-profile-membre',
@@ -47,24 +46,19 @@ export class ProfileMembreComponent implements OnInit {
   //update fields
   email:any;
   motdepasse:any;
+  tel: any;
 //message confirmation
   message = '';
   file: any;
-tel: any;
   constructor(private modalService: NgbModal,private http:ClubService,private _http:MembreService,private  router: Router)
   { }
 
   ngOnInit(): void {
-   //this.getuserClubs();
     this.idmembre=localStorage.getItem('id_membre') ;
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
-
     this.role=localStorage.getItem('role');
-
     this.getuser(this.idmembre);
-    //this.email=this.user.email;
-    //console.log(this.email)
     this.message='';
   }
   getuser(id_membre:any) {
@@ -82,20 +76,16 @@ tel: any;
   Updateuser() {
     this._http.UpdateUser(this.email,this.motdepasse,this.tel)
     .subscribe(data => {
-
       if(data['error']!=true){
-
         console.log(data)
         swal("Succès!", "votre profile a été modifier avec succès", "success");
-    
-
+        this.getuser(this.idmembre)
         this.editProfile = !this.editProfile;
          }else{
           swal("Erreur!", data['message'], "error");
       }
     },
       err => {
-    //show error toast when the server went wrong
      console.log(err);
       }
     );
@@ -115,7 +105,7 @@ tel: any;
         this.file='';
 
         this.getuser(this.idmembre);
-      
+
 
          }else{
         alert(data['message'])

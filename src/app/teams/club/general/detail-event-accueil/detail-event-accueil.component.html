@@ -19,12 +19,12 @@
                         <span *ngIf="ev.statut == 0">Gratuit</span>
                         <span *ngIf="ev.statut == 1">Payé</span>
                     </div>
-                    <div class="domain"><h3 >Date: de {{ev.date_debut}} à {{ev.date_fin}}</h3></div>
-                    <div class="domain"><h3 > de {{ev.heure_debut}} à {{ev.heure_fin}}</h3></div>
+                    <div class="domain"><h5 >Date: de {{ev.date_debut}} à {{ev.date_fin}}</h5></div>
+                    <div class="domain"><h5 > de {{ev.heure_debut}} à {{ev.heure_fin}}</h5></div>
                     <div class="description"><p>{{ev.description_event}} </p></div>
 
                     <div  class="btninscri">
-                        <a class="hvr-radial-out button-theme btninscri" (click)="participer(ev.id_event)" > participer</a>
+                        <a href='{{ev.url_event}}' style='width:300px' class="hvr-radial-out button-theme btninscri"> Lien de formulaire pour participer </a>
                     </div>
 
 

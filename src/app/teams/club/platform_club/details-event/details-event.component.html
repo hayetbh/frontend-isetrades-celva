@@ -42,10 +42,20 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="general-info">
-                      <div class="row">
-                        <div class="col-lg-12">
+                      <div class="row" *ngFor="let ev of event">
+                        <div class="col-lg-6">
+                          <div class="full float-right_img">
+                            <img class="img-responsive" src="http://127.0.0.1:5010/{{ev.url_image}}" alt="event image" />
+                            <label class="text-primary">changer l'image de l'événement</label>
+                            <div class="input-group">
+                              <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
+                              <input type="file" class="form-control" value=""  id="image_event" placeholder="upload image de l'événement" (change)="image($event)">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-6">
                           <div class="table-responsive">
-                            <table class="table" *ngFor="let ev of event">
+                            <table class="table" >
                               <tbody>
                               <tr>
                                 <td>
