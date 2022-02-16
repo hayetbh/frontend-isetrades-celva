@@ -13,9 +13,8 @@ email:String;
   constructor(private _http:AuthService,private  router: Router) { }
   ngOnInit() {
   }
-
+//send an email to reset password
 sendemail(){
- // this.element = document.getElementById('email')as HTMLElement;
   console.log(this.email)
   this._http.SendEmailForgetPassword(this.email).subscribe(data => {
 
@@ -34,22 +33,4 @@ sendemail(){
   );
 
 }
-/*
-resetpassword(){
-  this._http.restartPassword(this.password).subscribe(data => {
-    console.log(data)
-    if(data['error']!=true){
-      console.log(data["token"]);
-      localStorage.setItem("token",data["token"]);
-      this.router.navigate(['/dashboard_accueil/signin']);
-
-    }else{
-      alert(data['message'])
-    }
-  },
-    err => {
-  //show error toast when the server went wrong
-    }
-  );
-}*/
 }

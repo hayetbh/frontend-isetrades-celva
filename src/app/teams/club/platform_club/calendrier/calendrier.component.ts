@@ -225,18 +225,20 @@ heure_fin: any;
   closeOpenMonthViewDay() {
   this.activeDayIsOpen = false;
   }
-   //popup for event
+   //popup for add an event
    addeventpopup(){
     this.addevent=true
   }
+  //close the popup of add an event
   closevent(){
     this.addevent=false
 
   }
- //add event
+ //read the path of an event
   image(e:any){
   this.url_image=e.target.files[0];
   }
+  //add event
   addevents(){
     const formData = new FormData();
       formData.append('titre_event', this.titre_event);

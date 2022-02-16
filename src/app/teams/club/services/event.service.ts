@@ -167,4 +167,14 @@ export class EventService {
       {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
       );
   }
+  UpdateEventPic(file:any){
+    return this._http.post<any>(
+      this.api + "/event/updateEventImage",
+       {
+        file:file
+      },
+      {headers:{'authorization':`Bearer ${localStorage.getItem('token')}`}}
+      );
+  }
+
 }

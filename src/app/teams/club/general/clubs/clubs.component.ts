@@ -13,11 +13,10 @@ export class ClubsComponent implements OnInit {
   constructor(private _http:ClubService,private  router: Router)
   { }
 
-
   ngOnInit(): void {
     this.getclubs();
   }
-
+//display the informations of all clubs
   getclubs() {
     this._http.getClubs()
       .subscribe(
@@ -29,10 +28,11 @@ export class ClubsComponent implements OnInit {
           console.log(error);
         });
   }
+  //send a request to the club specific
 inscrire(e:any){
   this.router.navigate(['/clubs/envoyer_demande/'+e]);
- // localStorage.setItem("id_club",e);
 }
+//login button to your account
 signin(){
   this.router.navigate(['/club/signin']);
 

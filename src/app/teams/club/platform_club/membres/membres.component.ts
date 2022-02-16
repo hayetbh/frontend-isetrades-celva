@@ -19,37 +19,25 @@ export class MembresComponent implements OnInit {
 
   ngOnInit() {
     this.idclub= this.route.snapshot.paramMap.get('id');
-    this.getmembres(this.idclub);
     this.getClubUsers(this.idclub);
   }
+  //get membres of club
   getClubUsers(id_club:any) {
     this._http.getClubUsers(id_club)
       .subscribe(
         club => {
           this.users= club['data'];
-console.log(club['data'])
         },
         error => {
           console.log(error);
         });
   }
-  getmembres(id_club:any) {
-    this._http.getMembres(id_club)
-      .subscribe(
-        club => {
-          this.membres= club['data'];
-console.log(club['data'])
-        },
-        error => {
-          console.log(error);
-        });
-  }
+//get the responsable of club
   getresponsables(id_club:any) {
     this._http.getResponsables(id_club)
       .subscribe(
         club => {
           this.responsables= club['data'];
-console.log(club['data'])
         },
         error => {
           console.log(error);

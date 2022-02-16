@@ -21,7 +21,9 @@ export class VotesComponent implements OnInit {
   ngOnInit() {
     this.getvotes(this.idsondage);
   }
-  //vote
+  //vote for an poll
+  //+ totals of true votes
+  //+ totals of false votes
   getvotes(idsondage:any){
     this.v_http.getVotes(idsondage).subscribe(club => {
       this.NumberOfVotesTrue= club['NumberOfVotesTrue'];

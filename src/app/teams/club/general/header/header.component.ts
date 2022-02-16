@@ -12,10 +12,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-// this.router.navigate(['dashboard_accueil/demande/']);
-event(){
-  this.router.navigate(['club/events']);
-}
+// navigation to the pages
 clubs(){
   this.router.navigate(['accueil/clubs']);
 }

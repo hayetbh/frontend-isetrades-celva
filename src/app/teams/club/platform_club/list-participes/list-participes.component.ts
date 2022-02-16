@@ -30,9 +30,8 @@ export class ListParticipesComponent implements OnInit {
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
     this.page = 1;
-    //this.refreshData();
   }
-//participer
+//display all participes
 getallparticipes(){
   this.e_http.getallparticipation(this.id_event).subscribe(club => {
     this.participants= club['data'];
@@ -43,14 +42,14 @@ getallparticipes(){
     console.log(error);
   });
 }
-
+// confirmer an demande of participation
 confirmer(id_participation:any,event_name:any,email:any){
   //console.log("h")
    this.e_http.confirmer(id_participation,event_name,email).subscribe(data => {
 
     if(data['error']!=true){
 
-     
+
       swal("Succès!", "le demande a été confirmé", "success");
       this.getallparticipes();
     }else{
@@ -64,7 +63,7 @@ confirmer(id_participation:any,event_name:any,email:any){
   );
 
 }
-
+//delete or refuser an demande
 delete(id_participation:any){
   swal({
     title: "Es-tu sûr?",
@@ -78,18 +77,18 @@ delete(id_participation:any){
   })
   .then((willDelete) => {
     if (willDelete) {
-      
+
       this.e_http.deleteparticipant(id_participation).subscribe(data => {
 
-        
+
         if(data['error']!=true){
-    
+
           this.getallparticipes();
-         
+
         }else{
           swal("Erreur!", data['message'], "error");
         }
-    
+
       },
         err => {
         }
@@ -102,7 +101,7 @@ delete(id_participation:any){
     }
   });
 
-  
+
 
 }
 

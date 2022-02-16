@@ -14,7 +14,6 @@ import {
   format,
 } from 'date-fns';
 import { Observable } from 'rxjs';
-//import swal from 'sweetalert';
 import { PopupComponent } from '../../../../popup/popup.component';
 import { EventService } from '../../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -62,7 +61,7 @@ export class ScheduleComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
   refresh: Subject<any> = new Subject();
-  @ViewChild('prochaine', {static: false}) div; 
+  @ViewChild('prochaine', {static: false}) div;
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
 
@@ -74,14 +73,14 @@ export class ScheduleComponent implements OnInit {
    this.getevents();
 
   }
-  
+ //display all the events in the calendrier
   getevents() {
     this.e_http.getevents()
       .subscribe(
         club => {
-      
+
           this.events= [...club['data'].map(e=>{
-            
+
             return{
               start:new Date(e.date_debut),
               end:new Date(e.date_debut),
@@ -93,9 +92,9 @@ export class ScheduleComponent implements OnInit {
               date:e.date_debut,
             }
           })];
-          
+
           document.getElementById('prochaine').click();
-    
+
           document.getElementById('precedent').click();
           document.getElementById('aujourdhui').click();
         },
@@ -103,94 +102,32 @@ export class ScheduleComponent implements OnInit {
           console.log(error);
         });
       }
-  
+  //go the details page
   gotodetails(id_event:any ){
     this.router.navigate(['club/calendrier/details/'+id_event]);
-  
-    
   }
-
+//open the event popup
   eventClicked(event){
     this.popup=true
     this.popupData={
       ...event.event
     }
   }
-  
-  
-  
+  // close the event information popup
   close(){
     this.popup=false
-
   }
-  /*
-  getClubEvents(){
-    this.e_http.getClubEvents(this.idclub).subscribe(club => {
-      
-      this.events= [...club['data'].map(e=>{
-        
-        return{
-          start:new Date(e.date_debut),
-          end:new Date(e.date_debut),
-          title:e.titre_event,
-          description:e.description,
-          heuredebut:e.heure_debut,
-          heurefin:e.heure_fin,
-          id:e.id_calendrier
-        }
-      })];
-      
-     
-    },
-    error => {
-      console.log(error);
-    });
-  }
-getcal(idclub:any){
-    this.e_http.getcalendrier(idclub).subscribe(club => {
-      
-      this.events= [...this.events, ...club['data'].map(e=>{
-        console.log(club)
-        return{
-          start:new Date(e.date),
-          end:new Date(e.date),
-          title:e.titre,
-          description:e.description
-        }
-      })]
-      ;
-    
-    document.getElementById('prochaine').click();
-    
-    document.getElementById('precedent').click();
-    document.getElementById('aujourdhui').click();
-    },
-    error => {
-      console.log(error);
-    });
-  }
-*/
-  
-
-  addEvent(){
-    this.add=true
-  }
-  closevent(){
-    this.add=false
-
-  }
+  // get the admin
   getadmin() {
     this._http.getadmin(this.idclub).subscribe(club => {
       this.admin= club['isAdmin'];
 
-
-
     },
     error => {
       console.log(error);
     });
   }
- 
+// angular calendrier
   setView(view: CalendarView) {
     this.view = view;
   }

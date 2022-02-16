@@ -35,6 +35,7 @@ export class TestaccueilComponent implements OnInit {
     this.getuser(this.idmembre);
     this.getevents();
   }
+  //get
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];
@@ -63,6 +64,7 @@ export class TestaccueilComponent implements OnInit {
     this.router.navigate(['/dashboard_club/profile/'+e]);
 
   }
+  //display all events from all the clubs
   getevents() {
     this.http.getevents()
       .subscribe(
@@ -75,6 +77,7 @@ export class TestaccueilComponent implements OnInit {
           console.log(error);
         });
   }
+  //participer in an event
   participer(id_event:any){
     this.http.participer(id_event).subscribe(data => {
       if(data['error']!=true){
@@ -93,5 +96,5 @@ export class TestaccueilComponent implements OnInit {
       }
     );
   }
-  
+
 }

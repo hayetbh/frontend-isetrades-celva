@@ -61,6 +61,7 @@ export class ProfileMembreComponent implements OnInit {
     this.getuser(this.idmembre);
     this.message='';
   }
+  //get current user
   getuser(id_membre:any) {
     this._http.getUser(id_membre)
       .subscribe(
@@ -72,7 +73,7 @@ export class ProfileMembreComponent implements OnInit {
           console.log(error);
         });
   }
-
+// update the email/tel /password of user
   Updateuser() {
     this._http.UpdateUser(this.email,this.motdepasse,this.tel)
     .subscribe(data => {
@@ -90,11 +91,7 @@ export class ProfileMembreComponent implements OnInit {
       }
     );
   }
-  imageProfil(e:any){
-    this.file=e.target.files[0];
-    console.log(e.target.files[0])
-    }
-  //this.idclub,this.post
+  //update the image of profil
    updatePic(e:any){
     const formData = new FormData();
 
@@ -117,19 +114,10 @@ export class ProfileMembreComponent implements OnInit {
       }
     );
   }
+  //open the form of edit an profile
   toggleEditProfile() {
     this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
     this.editProfile = !this.editProfile;
   }
 
-
-  getuserClubs() {
-    this.http.getuserClubs().subscribe(club => {
-      this.clubs= club['data'];
-      console.log(club);
-    },
-    error => {
-      console.log(error);
-    });
-  }
 }

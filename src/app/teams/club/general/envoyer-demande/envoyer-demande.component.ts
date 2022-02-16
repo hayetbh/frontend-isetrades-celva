@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestService } from '../../services/request.service';
-//import { DialogElementsExampleDialog } from './dialog-elements-example-dialog';
-//import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopupComponent } from '../../../../popup/popup.component';
 
@@ -25,10 +23,9 @@ export class EnvoyerDemandeComponent implements OnInit {
   }
   ngOnInit(): void {
  this.getteams();
-
 this.club = this.route.snapshot.paramMap.get('id');
   }
-
+//send request of joint an club
 sendRequest(){
     this._http.sendRequest(this.cin,this.equipe,this.club,this.motivation,
        this.email,this.tel
@@ -37,14 +34,11 @@ sendRequest(){
       if(data['error']!=true){
         console.log(data["token"])
         localStorage.setItem("token",data["token"])
-       // localStorage.setItem("id_club",data['data']['id_club']);
         this.router.navigate(['accueil/clubs']);
-       // window.alert('votre demande a été envoyé avec succès')
         const modalRef = this.modalService.open(PopupComponent);
         modalRef.componentInstance.name = 'votre demande a été envoyé avec succès';
         modalRef.componentInstance.message = 'Succès';
       }else{
-        //alert(data['message'])
         const modalRef = this.modalService.open(PopupComponent);
         modalRef.componentInstance.name = data['message'];
         modalRef.componentInstance.message = 'Erreur';
@@ -56,7 +50,7 @@ sendRequest(){
       }
     );
 }
-
+//get teams of clubs
   getteams() {
     this._http.getTeams()
       .subscribe(
@@ -68,6 +62,7 @@ sendRequest(){
           console.log(error);
         });
   }
+  //read the value of team from option list
   fun(e: any){
     this.equipe = e.target.value;
   }

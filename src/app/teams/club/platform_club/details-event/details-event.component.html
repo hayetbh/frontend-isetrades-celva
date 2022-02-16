@@ -24,6 +24,7 @@
                     <div class="domain"><h3 class="header3">de {{ev.heure_debut}} à {{ev.heure_fin}}</h3></div>
                     <div class="description"><p>{{ev.description_event}} </p></div>
 
+
                     <div  class="btninscri">
                         <a class="hvr-radial-out button-theme btninscri" (click)="participer(ev.id_event)" id="participer" > participer</a>
                     </div>
@@ -49,8 +50,9 @@
                             <label class="text-primary">changer l'image de l'événement</label>
                             <div class="input-group">
                               <span class="input-group-prepend"><label class="input-group-text"><i class="ti-gallery"></i></label></span>
-                              <input type="file" class="form-control" value=""  id="image_event" placeholder="upload image de l'événement" (change)="image($event)">
+                              <input type="file" class="form-control" value=""  id="image_event" placeholder="upload image de l'événement" (change)="updatePic($event)">
                             </div>
+
                         </div>
                         </div>
                         <div class="col-lg-6">

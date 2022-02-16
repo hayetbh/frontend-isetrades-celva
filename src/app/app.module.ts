@@ -32,10 +32,9 @@ import { EnvoyerDemandeComponent } from './teams/club/general/envoyer-demande/en
 import { ProfileMembreComponent } from './teams/club/platform_club/profile-membre/profile-membre.component';
 import { ResetPasswordComponent } from './teams/club/general/reset-password/reset-password.component';
 import { ClubsComponent } from './teams/club/general/clubs/clubs.component';
-import { SendRequestComponent } from './teams/club/general/send-request/send-request.component';
 import { CommentaireComponent } from './teams/club/platform_club/commentaire/commentaire.component';
 import { VotesComponent } from './teams/club/platform_club/votes/votes.component';
-import { TestaccueilComponent } from './teams/club/platform_club/testaccueil/testaccueil.component';
+import { TestaccueilComponent } from './teams/club/platform_club/accueil/testaccueil.component';
 import { SearchPipe } from './teams/club/platform_club/liste-demandes/search.pipe';
 import { HeaderComponent } from './teams/club/general/header/header.component';
 import { ListParticipesComponent } from './teams/club/platform_club/list-participes/list-participes.component';
@@ -73,7 +72,6 @@ registerLocaleData(localeFr, 'fr');
     ProfileMembreComponent,
     ResetPasswordComponent,
     ClubsComponent,
-    SendRequestComponent,
     CommentaireComponent,
     VotesComponent,
     TestaccueilComponent,

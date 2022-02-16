@@ -16,10 +16,12 @@ export class CommentaireComponent implements OnInit {
 
 
   ngOnInit() {
+    //get the id of membre from the local storage
     this.id_membre=localStorage.getItem('id_membre');
 this.getcmtre(this.idpublication);
 this.getuser(this.id_membre);
   }
+  //display information of user
   getuser(id_membre:any) {
     this.u_http.getUser(id_membre)
       .subscribe(
@@ -31,7 +33,7 @@ this.getuser(this.id_membre);
           console.log(error);
         });
   }
-//commantaire
+//display all comments
 getcmtre(idpub:any) {
   this._http.getComments(idpub).subscribe(club => {
       this.cmtrs= club['data'];
@@ -42,6 +44,7 @@ getcmtre(idpub:any) {
     });
 
 }
+//delete comment
 deleteCMTRE(id_commentaire:any){
   this._http.deleteComment(id_commentaire).subscribe(club => {
     console.log(club);

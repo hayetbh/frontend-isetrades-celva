@@ -22,10 +22,9 @@ import { ListeParticipationComponent } from "./teams/club/platform_club/liste-pa
 import { MembresComponent } from "./teams/club/platform_club/membres/membres.component";
 import { ProfileMembreComponent } from "./teams/club/platform_club/profile-membre/profile-membre.component";
 import { ScheduleComponent } from "./teams/club/general/schedule/schedule.component";
-import { TestaccueilComponent } from "./teams/club/platform_club/testaccueil/testaccueil.component";
+import { TestaccueilComponent } from "./teams/club/platform_club/accueil/testaccueil.component";
 import { DetailsEventComponent } from "./teams/club/platform_club/details-event/details-event.component";
 import { DetailEventAccueilComponent } from "./teams/club/general/detail-event-accueil/detail-event-accueil.component";
-import { SendRequestComponent } from "./teams/club/general/send-request/send-request.component";
 
 //administration-components
 //communication-components
@@ -97,8 +96,7 @@ const routes: Routes = [
   },
 
 //club-routes
-{ path: "test", component: TestaccueilComponent },
-{ path: "club/send", component:SendRequestComponent },
+//general
 { path: "club/signin", component: SigninComponent },
 { path: "club/reset_password", component: ResetPasswordComponent },
 { path: "accueil/clubs", component: ClubsComponent },
@@ -106,45 +104,55 @@ const routes: Routes = [
 { path: "clubs/envoyer_demande/:id", component: EnvoyerDemandeComponent },
 { path: "club/calendrier", component: ScheduleComponent},
 {
+  //platform
   path: "dashboard_club",
   component: DashboardClubComponent,
   children: [
     {
+      //accueil of platform
       path: "accueil/:id",
       component: AccueilClubComponent,
     },
     {
+      //calendrier
       path: "calendrier/:id",
       component: CalendrierComponent,
     },
 
     {
+      //liste of mambres
       path: "membres/:id",
       component: MembresComponent,
     },
     {
+      //Mon profile
       path: "profile/:id",
       component: ProfileMembreComponent,
     },
     {
+      //liste demandes
       path: "liste-demandes/:id",
       component: ListeDemandesComponent,
     },
     {
+      //liste participes
       path: "liste-participes/:id",
       component: ListParticipesComponent,
     },
     {
+      //Mes événements
       path: "liste-events/:id",
       component: ListeParticipationComponent,
     },
 
     {
+      //accueil
       path: "accueil",
       component: TestaccueilComponent,
     },
 
     {
+      //details of an event
       path: "details/:idc/:id",
       component: DetailsEventComponent,
     },

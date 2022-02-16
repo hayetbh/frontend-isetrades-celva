@@ -155,22 +155,8 @@ export class DashboardClubComponent implements OnInit {
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributes(this.windowWidth);
-
-    // dark
-    /*this.setLayoutType('dark');
-    this.headerTheme = 'theme5';
-    this.logoTheme = 'theme5';*/
-
-    // light-dark
-    /*this.setLayoutType('dark');
-    this.setNavBarTheme('themelight1');
-    this.navType = 'st2';*/
-
-    // dark-light
-    // this.setNavBarTheme('theme1');
-    // this.navType = 'st3';
-
   }
+  // logout from your compte
   logout(){
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -180,6 +166,7 @@ export class DashboardClubComponent implements OnInit {
     this.router.navigate(['/club/signin']);
 
   }
+  //all the navigations button to different pages
   gotoAccueilGeneral(){
     window.location.href = '/dashboard_club/accueil';
   }
@@ -201,20 +188,16 @@ export class DashboardClubComponent implements OnInit {
   gotoEvents(idclub:any){
     window.location.href = '/dashboard_club/liste-events/'+idclub;
   }
+  //display only the users of each club
   getuserClubs() {
     this._http.getuserClubs().subscribe(club => {
       this.clubs= club['data'];
-      for (var club of this.clubs) {
-       // console.log(club.id_club);
-        //localStorage.setItem("id_club",club.id_club);
-      }
-
-      console.log(club);
     },
     error => {
       console.log(error);
     });
   }
+  // display informations of user
   getuser(id_membre:any) {
     this.u_http.getUser(id_membre)
       .subscribe(
@@ -231,7 +214,6 @@ export class DashboardClubComponent implements OnInit {
     this.setBackgroundPattern('pattern2');
     this.nom=localStorage.getItem('nom');
     this.prenom=localStorage.getItem('prenom');
-    //this.idclub=localStorage.getItem('id_club');
     this.role=localStorage.getItem('role');
     this.id=localStorage.getItem('id_membre');
     this.getuser(this.id);

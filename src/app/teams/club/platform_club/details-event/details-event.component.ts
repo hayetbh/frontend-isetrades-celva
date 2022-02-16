@@ -35,10 +35,12 @@ heure_fin: any;
     this.getOneEvent();
     this.getadmin();
   }
+  // to change to edit form and the icon of button
   toggleEditEvent() {
     this.editEventIcon = (this.editEventIcon === 'icofont-close') ? 'icofont-edit' : 'icofont-close';
     this.editEvent = !this.editEvent;
   }
+  //get the admin of club
   getadmin() {
     this._http.getadmin(this.idclub).subscribe(club => {
       this.admin= club['isAdmin'];
@@ -48,6 +50,7 @@ heure_fin: any;
       console.log(error);
     });
   }
+  // participer in an event
   participer(id_event:any){
     this.http.participer(id_event).subscribe(data => {
       if(data['error']!=true){
@@ -61,7 +64,7 @@ heure_fin: any;
       }
     );
   }
-
+//get one event  by id
   getOneEvent(){
     this.http.getOneEvent(this.idevent).subscribe(club => {
       this.event= club['data'];
@@ -71,20 +74,40 @@ heure_fin: any;
       console.log(error);
     });
   }
-  //participer
+  //go to the page of participates
 gotolisteparticipates(id_event:any, nomevent:any ){
   this.router.navigate(['dashboard_club/liste-participes/'+id_event]);
   nomevent = localStorage.setItem('nomevent',nomevent);
 
 }
+//read the path of event pic
 image(e:any){
   this.url_image=e.target.files[0];
 }
+//update event picture
+updatePic(e:any){
+  const formData = new FormData();
+  formData.append('file', e.target.files[0]);
+    console.log(this.file)
+  this.http.UpdateEventPic(formData).subscribe(data => {
+    if(data['error']!=true){
+      this.getOneEvent();
+       }else{
+      alert(data['message'])
+    }
+  },
+    err => {
+  //show error toast when the server went wrong
+  console.log(err);
+    }
+  );
+}
+//update an event
 updateEvent() {
 
   this.http.updateEvent(this.idevent,this.titre_event,this.description_event,this.date_debut,this.date_fin,this.heure_debut,this.heure_fin,this.statut,this.url_image)
   .subscribe(data => {
-
+    console.log(this.url_image)
     if(data['error']!=true){
       swal("Succès!", "l'événement a été modifié avec succès", "success");
       this.getOneEvent();
@@ -100,32 +123,5 @@ updateEvent() {
     }
   );
 }
-/* imageProfil(e:any){
-  this.file=e.target.files[0];
-  console.log(e.target.files[0])
-  }
-
-updatePic(e:any){
-  const formData = new FormData();
-
-  formData.append('file', e.target.files[0]);
-    console.log(this.file)
-  this.http.UpdatePic(formData).subscribe(data => {
-    if(data['error']!=true){
-      this.file='';
-
-     // this.getuser(this.idmembre);
-      console.log(data)
-
-       }else{
-      alert(data['message'])
-    }
-  },
-    err => {
-  //show error toast when the server went wrong
-  console.log(err);
-    }
-  );
-}*/
 
 }

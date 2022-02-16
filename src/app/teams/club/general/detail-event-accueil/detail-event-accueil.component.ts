@@ -16,24 +16,12 @@ export class DetailEventAccueilComponent implements OnInit {
     this.idevent= this.route.snapshot.paramMap.get('id');
     this.getOneEvent();
   }
-  participer(id_event:any){
-    this.http.participer(id_event).subscribe(data => {
-      if(data['error']!=true){
-        swal("Succès!", "vous avez participé avec succès", "success");
-      }else{
-       swal("Erreur!", data['message'], "error");
-      }
-    },
-      err => {
-    console.log(err);
-      }
-    );
-  }
-  
+
+  //get the event information
   getOneEvent(){
     this.http.getOneEvent(this.idevent).subscribe(club => {
       this.event= club['data'];
-      
+
     },
     error => {
       console.log(error);

@@ -11,9 +11,6 @@ import swal from 'sweetalert';
 })
 export class ListeDemandesComponent implements OnInit {
   requests: any=[];
-
-  //isCollapsedMobile: string;
-  //isCollapsedSideBar: string;
   page = 1;
   pageSize = 2;
   pageSizes = [2, 4, 6];
@@ -23,29 +20,19 @@ export class ListeDemandesComponent implements OnInit {
   equipes: any=[];
   idclub: string;
   constructor(private modalService: NgbModal,private _http:RequestService,private route: ActivatedRoute)
-  {
-    //this.isCollapsedMobile = 'no-block';
-   //this.isCollapsedSideBar = 'no-block';
-}
+  {}
 
 
 handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
     this.page = 1;
-    //this.refreshData();
   }
-  /*toggleOpenedSidebar() {
-    this.isCollapsedSideBar = this.isCollapsedSideBar === 'yes-block' ? 'no-block' : 'yes-block';
-  }
-  onMobileMenu() {
-    this.isCollapsedMobile = this.isCollapsedMobile === 'yes-block' ? 'no-block' : 'yes-block';
-  }*/
 
   ngOnInit(): void {
     this.idclub= this.route.snapshot.paramMap.get('id');
     this.getrequests();
-
   }
+  //get teams of club
   getteams() {
     this._http.getTeams()
       .subscribe(
@@ -57,6 +44,7 @@ handlePageSizeChange(event: any): void {
           console.log(error);
         });
   }
+  //display all the requests
   getrequests() {
     this._http.getRequests(this.idclub).subscribe(club => {
         this.requests= club['data'];
@@ -67,7 +55,7 @@ handlePageSizeChange(event: any): void {
       });
 
   }
-
+//accepter a demande
   Accepter(id_demande:any, email:any ){
 
      this._http.acceptRequests(id_demande,email).subscribe(data => {
@@ -82,11 +70,12 @@ handlePageSizeChange(event: any): void {
 
     },
       err => {
-   
+
       }
     );
 
   }
+  //delete/refuser a demande
   Delete(iddemande:any, email:any ){
     swal({
       title: "Es-tu sûr?",
@@ -100,19 +89,19 @@ handlePageSizeChange(event: any): void {
     })
     .then((willDelete) => {
       if (willDelete) {
-        
+
         this._http.DeleteRequests(iddemande,email).subscribe(data => {
           console.log(data)
           if(data['error']!=true){
            this.getrequests();
-     
+
           }else{
             swal("Erreur!", data['message'], "error");
           }
-     
+
         },
           err => {
-       
+
           }
         );
         swal("le demande a été supprimer!", {
@@ -122,8 +111,8 @@ handlePageSizeChange(event: any): void {
         swal("Votre fichier est en sécurité !");
       }
     });
-  
-  
+
+
 
  }
 }

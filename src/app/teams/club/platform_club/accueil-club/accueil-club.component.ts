@@ -43,6 +43,7 @@ export class AccueilClubComponent implements OnInit {
   clubs: any;
   events: any;
 //event
+  id_event: any;
   titre_event: any;
   description:any;
   date_debut: any;
@@ -53,12 +54,13 @@ export class AccueilClubComponent implements OnInit {
   url_event: any;
   heure_debut: any;
   heure_fin: any;
-  //
+  // icon / add button
   add= true;
-  editProfile = true;
-  editProfileIcon = 'icofont-ui-add';
+  AddActivity = true;
+  AddIcon = 'icofont-ui-add';
+  // vote list
   vote: any=[];
-  id_event: any;
+  // message for ....
   message='';
   //CALENDRIER
   tasks: any=[];
@@ -66,7 +68,7 @@ export class AccueilClubComponent implements OnInit {
   temps: any;
   date: any;
   clubss: any=[];
-
+//
   post_image : any;
   admin: any;
   user: any=[];
@@ -90,20 +92,11 @@ export class AccueilClubComponent implements OnInit {
     this.getposts();
     this.getClubEvents();
     this.getsondage();
-    this.getuserClubs();
     this.getadmin();
     this.getuser(this.id_membre);
     this.getact(this.idclub);
   }
-
-  getuserClubs() {
-    this._http.getuserClubs().subscribe(club => {
-      this.clubss= club['data'];
-    },
-    error => {
-      console.log(error);
-    });
-  }
+  // get user for profile
   getuser(id_membre:any) {
     this.u_http.getUser(id_membre)
       .subscribe(
@@ -115,30 +108,28 @@ export class AccueilClubComponent implements OnInit {
           console.log(error);
         });
   }
+  // get admin information for gestion de role
   getadmin() {
     this._http.getadmin(this.idclub).subscribe(club => {
       this.admin= club['isAdmin'];
-
-
-
     },
     error => {
       console.log(error);
     });
   }
-  toggleEditProfile() {
-    this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-ui-add' : 'icofont-close';
-    this.editProfile = !this.editProfile;
+  // changer the add activity icon
+  toggleAddActivity() {
+    this.AddIcon = (this.AddIcon === 'icofont-close') ? 'icofont-ui-add' : 'icofont-close';
+    this.AddActivity = !this.AddActivity;
   }
+  //open the add form of activity and change the icon of button
   open() {
     this.buttontext="Annuler";
-    this.editProfileIcon = (this.editProfileIcon === 'icofont-close') ? 'icofont-ui-add' : 'icofont-close';
+    this.AddIcon = (this.AddIcon === 'icofont-close') ? 'icofont-ui-add' : 'icofont-close';
     this.add=!this.add;
-    //const modalRef = this.modalService.open(AddTOcalendrierComponent);
-    //modalRef.componentInstance.name = 'Hanen';
   }
 
-//post
+//display all the posts
   getposts() {
     this.p_http.getposts(this.idclub).subscribe(club => {
         this.posts= club['data'];
@@ -150,7 +141,7 @@ export class AccueilClubComponent implements OnInit {
 
   }
 
-  //commantaire
+  // display all commentaires
   getcmtre(idpublication:any) {
     this.p_http.getComments(idpublication).subscribe(club => {
         this.cmtrs= club['data'];
@@ -160,7 +151,7 @@ export class AccueilClubComponent implements OnInit {
       });
 
   }
-
+// add commentaire
   addcmtre(idpublication:any){
     this.p_http.addComment(idpublication,this.cmtre).subscribe(data => {
       if(data['error']!=true){
@@ -176,9 +167,7 @@ export class AccueilClubComponent implements OnInit {
       }
     );
   }
-
-
-  //sondage
+  //display all polls
   getsondage(){
     this.v_http.getsondage(this.idclub).subscribe(club => {
       this.sondages= club['data'];
@@ -189,15 +178,12 @@ export class AccueilClubComponent implements OnInit {
       console.log(error);
     });
   }
-
+// add sondage only by the admin
   addsondage(){
     this.v_http.addsondage(this.title,this.idclub).subscribe(data => {
       if(data['error']!=true){
         this.title='';
         this.getsondage();
-
-        //console.log(data["sondages"])
-        //localStorage.setItem("sondages",data["sondages"])
          }else{
         alert(data['message'])
       }
@@ -208,13 +194,10 @@ export class AccueilClubComponent implements OnInit {
       }
     );
   }
-
-
-  //vote
+  //vote for an poll
   getvotes(idsondage:any){
     this.v_http.getVotes(idsondage).subscribe(club => {
       this.votes= club['data'];
-
     },
     error => {
       console.log(error);
@@ -228,7 +211,7 @@ export class AccueilClubComponent implements OnInit {
       console.log(error);
     });
   }
-
+//voter by yes or no to a poll
   voter(satut:any,idsondage:any){
     this.v_http.addVote(satut,idsondage).subscribe(data => {
 
@@ -247,12 +230,12 @@ export class AccueilClubComponent implements OnInit {
     );
   }
 
-//participer
+//go to the liste participations
 gotolisteparticipates(id_event:any, nomevent:any ){
   this.router.navigate(['dashboard_club/liste-participes/'+id_event]);
   nomevent = localStorage.setItem('nomevent',nomevent);
-
 }
+//display list of participation for admin of club
 getallparticipes(id_event:any){
   this.e_http.getallparticipation(id_event).subscribe(club => {
     this.events= club['data'];
@@ -262,17 +245,14 @@ getallparticipes(id_event:any){
     console.log(error);
   });
 }
-
+// participer in event
 participer(id_event:any){
   this.e_http.participer(id_event).subscribe(data => {
     if(data['error']!=true){
      swal("Succès!", "vous avez participé avec succès", "success");
-
     }else{
     swal("Erreur!", data['message'], "error");
-
     }
-
   },
     err => {
 
@@ -281,7 +261,7 @@ participer(id_event:any){
   );
 }
 
-//events
+//display all events
 getClubEvents(){
   this.e_http.getClubEvents(this.idclub).subscribe(club => {
     this.events= club['data'];
@@ -291,11 +271,11 @@ getClubEvents(){
     console.log(error);
   });
 }
-
+// read the path of image of an event
 image(e:any){
 this.url_image=e.target.files[0];
-
 }
+// add an event
 addevent(){
   const formData = new FormData();
   formData.append('titre_event', this.titre_event);
@@ -316,7 +296,7 @@ addevent(){
     if(data['error']!=true){
       swal("Succès!", "votre event a été enregistré avec succès", "success");
 
-      this.editProfile = !this.editProfile;
+      this.AddActivity = !this.AddActivity;
       this.getClubEvents();
       this.titre_event="";
       this.description="";
@@ -337,12 +317,12 @@ addevent(){
     }
   );
  }
-
+// read the path of the image of post
  imagePost(e:any){
   this.post_image=e.target.files[0];
   this.fileName=e.target.files[0].name;
   }
-
+//add a post
  addpost(){
   const formData = new FormData();
   formData.append('description', this.post);
@@ -358,7 +338,7 @@ addevent(){
 
       this.fileName=""
        }else{
-        //swal("Erreur!", data['message'], "error");
+        swal("Erreur!", data['message'], "error");
     }
   },
     err => {
@@ -367,7 +347,7 @@ addevent(){
     }
   );
 }
-//activites
+//display all activites
 getact(idclub:any){
   this.a_http.getclubactivites(idclub).subscribe(club => {
     this.activites= club['data'];
@@ -379,11 +359,12 @@ getact(idclub:any){
     console.log(error);
   });
 }
-
+//read the path of the activity image
 imageact(e:any){
   this.image_act=e.target.files[0];
   this.fileName=e.target.files[0].name;
   }
+  // add an activity
 addactivites(){
   const formData = new FormData();
   formData.append('titre_act', this.titre_act);
@@ -400,7 +381,7 @@ addactivites(){
          this.titre_act='';
       this.image_act='';
       this.description_act='';
-     this.editProfile = !this.editProfile;
+     this.AddActivity = !this.AddActivity;
       this.getact(this.idclub);
 
       this.fileName=""
@@ -414,9 +395,8 @@ addactivites(){
     }
   );
 }
-
-
 // all delete fnc
+//delete activity
 deleteact(id_activites:any){
   swal({
     title: "Es-tu sûr?",
@@ -452,7 +432,7 @@ deleteact(id_activites:any){
 
 
 }
-
+//delete post
 deletePOST(idpublication:any){
   swal({
     title: "Es-tu sûr?",
@@ -487,7 +467,7 @@ deletePOST(idpublication:any){
   });
 
 }
-
+//delete poll
 deleteSONDAGE(idsondage:any){
   swal({
     title: "Es-tu sûr?",
@@ -523,6 +503,7 @@ deleteSONDAGE(idsondage:any){
   });
 
 }
+//delete event
 deleteEVENT(idevent:any){
   swal({
     title: "Es-tu sûr?",

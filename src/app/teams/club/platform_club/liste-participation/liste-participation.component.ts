@@ -19,18 +19,19 @@ export class ListeParticipationComponent implements OnInit {
   participants: any;
   nombreofparticipation: any;
   add= true;
-  
+
   constructor(private modalService: NgbModal,private _http:EventService,private route: ActivatedRoute) { }
   handlePageSizeChange(event: any): void {
     this.pageSize = event.target.value;
     this.page = 1;
-    //this.refreshData();
   }
   ngOnInit() {
     this.idevent=this.route.snapshot.paramMap.get('id');
     this.get();
   }
-
+// get current user
+//+ his events that aleardy participer in
+// total of events
   get() {
     this._http.getOneUser().subscribe(club => {
         this.participants=club['data'];
@@ -42,58 +43,5 @@ export class ListeParticipationComponent implements OnInit {
       });
 
   }
-/*
-  Accepter(id_participation:any ){
-    //console.log("h")
-     this._http.confirmer(id_participation).subscribe(data => {
 
-      console.log(data)
-      if(data['error']!=true){
-
-        this.get();
-       // window.alert('le demande a été accepté')
-       const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = 'le demande a été confirmé';
-        modalRef.componentInstance.message = 'Succès';
-      }else{
-        //alert(data['message'])
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
-      }
-
-    },
-      err => {
-    //show error toast when the server went wrong
-      }
-    );
-
-  }
-
-  Delete(id_participation:any ){
-    //console.log("h")
-     this._http.delete(id_participation).subscribe(data => {
-
-      console.log(data)
-      if(data['error']!=true){
-
-        this.get();
-       // window.alert('le demande a été accepté')
-       const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = 'le demande a été suprimé';
-        modalRef.componentInstance.message = 'Succès';
-      }else{
-        //alert(data['message'])
-        const modalRef = this.modalService.open(PopupComponent);
-        modalRef.componentInstance.name = data['message'];
-        modalRef.componentInstance.message = 'Erreur';
-      }
-
-    },
-      err => {
-    //show error toast when the server went wrong
-      }
-    );
-
-  }*/
 }
